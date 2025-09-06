@@ -105,6 +105,9 @@ class SinglyLinkedList:
             yield trav.data
             trav = trav.next
 
+    def __len__(self):
+        return self.size
+
     def __str__(self):
         vals = []
         trav = self.head
@@ -112,3 +115,69 @@ class SinglyLinkedList:
             vals.append(str(trav.data))
             trav = trav.next
         return "[ " + ", ".join(vals) + " ]"
+
+
+def test_singly_linked_list():
+    print("Testing SinglyLinkedList...")
+
+    ll = SinglyLinkedList()
+    print(f"Empty list: {ll}")
+    print(f"Is empty: {ll.is_empty()}")
+    print(f"Size: {len(ll)}")
+
+    ll.add(10)
+    ll.add(20)
+    ll.add(30)
+    print(f"After adding 10,20,30: {ll}")
+
+    ll.add_first(5)
+    print(f"After adding 5 at beginning: {ll}")
+
+    print(f"First element: {ll.peek_first()}")
+    print(f"Last element: {ll.peek_last()}")
+
+    print(f"Index of 20: {ll.index_of(20)}")
+    print(f"Contains 30: {ll.contains(30)}")
+    print(f"Contains 99: {ll.contains(99)}")
+
+    first = ll.remove_first()
+    print(f"Removed first: {first}, List: {ll}")
+
+    last = ll.remove_last()
+    print(f"Removed last: {last}, List: {ll}")
+
+    removed = ll.remove_at(0)
+    print(f"Removed at index 0: {removed}, List: {ll}")
+
+    ll.add(40)
+    ll.add(50)
+    ll.add(60)
+    print(f"After adding 40,50,60: {ll}")
+
+    print("Iterating through list:")
+    for elem in ll:
+        print(f"  {elem}")
+
+    ll.clear()
+    print(f"After clear: {ll}, Is empty: {ll.is_empty()}")
+
+    try:
+        ll.peek_first()
+    except RuntimeError as e:
+        print(f"Expected error: {e}")
+
+    try:
+        ll.remove_at(0)
+    except IndexError as e:
+        print(f"Expected error: {e}")
+
+    ll.add(100)
+    print(f"Single element list: {ll}")
+    removed = ll.remove_last()
+    print(f"Removed last: {removed}, List: {ll}")
+
+    print("SinglyLinkedList tests completed successfully!\n")
+
+
+if __name__ == "__main__":
+    test_singly_linked_list()

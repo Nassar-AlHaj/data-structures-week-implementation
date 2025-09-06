@@ -76,3 +76,61 @@ class MyDynamicArray:
         if self.length == 0:
             return "[]"
         return "[" + ", ".join(str(self.arr[i]) for i in range(self.length)) + "]"
+
+
+def test_dynamic_array():
+    print("Testing MyDynamicArray...")
+    
+    arr = MyDynamicArray(2)
+    print(f"Empty array: {arr}")
+    print(f"Is empty: {arr.is_empty()}")
+    print(f"Size: {arr.size()}")
+    
+    arr.add(1)
+    arr.add(2)
+    arr.add(3)
+    arr.add(4)
+    print(f"After adding 1,2,3,4: {arr}")
+    print(f"Size: {arr.size()}, Capacity: {arr.capacity}")
+    
+    print(f"Element at index 0: {arr.get(0)}")
+    print(f"Element at index 2: {arr.get(2)}")
+    
+    arr.set(1, 10)
+    print(f"After setting index 1 to 10: {arr}")
+    
+    print(f"Index of 10: {arr.index_of(10)}")
+    print(f"Contains 3: {arr.contains(3)}")
+    print(f"Contains 99: {arr.contains(99)}")
+    
+    removed = arr.remove_at(1)
+    print(f"Removed element at index 1: {removed}")
+    print(f"Array after removal: {arr}")
+    
+    success = arr.remove(3)
+    print(f"Removed element 3: {success}")
+    print(f"Array after removing 3: {arr}")
+    
+    print("Iterating through array:")
+    for elem in arr:
+        print(f"  {elem}")
+    
+    arr.clear()
+    print(f"Array after clear: {arr}")
+    print(f"Is empty: {arr.is_empty()}")
+    
+    try:
+        arr.get(0)
+    except IndexError as e:
+        print(f"Expected error accessing empty array: {e}")
+    
+    try:
+        MyDynamicArray(-1)
+    except ValueError as e:
+        print(f"Expected error with negative capacity: {e}")
+    
+    print("MyDynamicArray tests completed successfully!\n")
+
+
+if __name__ == "__main__":
+    test_dynamic_array()
